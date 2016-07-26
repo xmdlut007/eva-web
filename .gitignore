@@ -1,0 +1,11 @@
+.idea/
+*.iml
+.project
+.settings/
+.classpath
+target/
+.externalToolBuilders/
+deploy/templates/log4j.xml
+src/main/webapp/node_modules/
+target/
+logs/
