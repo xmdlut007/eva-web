@@ -1,2 +1,2 @@
-# xmdlut
-个人项目库（Demo and Utils）
+# eva-web
+Spring MVC + MyBatis
