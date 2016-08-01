@@ -1,6 +1,7 @@
 package org.zsl.testmybatis;
 
 import com.alibaba.fastjson.JSON;
+import com.cn.xm.controller.UserController;
 import com.cn.xm.pojo.User;
 import com.cn.xm.service.IUserService;
 
@@ -14,12 +15,15 @@ import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 // 表示继承了SpringJUnit4ClassRunner类
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
-public class TestMyBatis {
-    private static Logger logger = Logger.getLogger(TestMyBatis.class);
+@ContextConfiguration(locations = {"classpath:spring-mybatis.xml", "classpath:spring-mvc.xml"})
+public class UserControllerTest {
+    private static Logger logger = Logger.getLogger(UserControllerTest.class);
     // private ApplicationContext ac = null;
     @Resource
     private IUserService userService = null;
+
+    @Resource
+    private UserController userController;
 
     // @Before
     // public void before() {
@@ -37,9 +41,10 @@ public class TestMyBatis {
         // user.setId(4);
         user.setPassword("helll");
         userService.insertUser(user);
-        User user1 = userService.getUserById(1);
+        User user1 = userService.getUserById(2);
         // System.out.println(user.getUserName());
         // logger.info("值："+user.getUserName());
         logger.info(JSON.toJSONString(user1));
+
     }
 }

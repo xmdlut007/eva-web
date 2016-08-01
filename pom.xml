@@ -16,6 +16,8 @@
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
+        <log_file_path>/usr/local/Cellar/tomcat/8.5.3/libexec/webapps/eva-web-0.0.1-SNAPSHOT/</log_file_path>
+
     </properties>
 
     <dependencies>
@@ -204,6 +206,10 @@
             </plugin>
         </plugins>
         <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources/*.xml</directory>
+                <filtering>true</filtering>
+            </resource>
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
