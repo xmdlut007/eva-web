@@ -20,12 +20,12 @@ public class UserController {
     @Resource
     private IUserService userService;
 
-    @AuthPassport
     @RequestMapping("/showUser")
     public String toIndex(HttpServletRequest request, Model model) {
         int userId = Integer.parseInt(request.getParameter("id"));
         User user = this.userService.getUserById(userId);
         model.addAttribute("user", user);
+
         logger.info("xxxxxxxx");
         return "showUser";
     }
