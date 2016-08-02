@@ -3,7 +3,8 @@ package com.cn.xm.controller;
 import com.cn.xm.pojo.User;
 import com.cn.xm.service.IUserService;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    private static Logger logger = Logger.getLogger(UserController.class);
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     @Resource
     private IUserService userService;
@@ -29,7 +30,7 @@ public class UserController {
         User user = this.userService.getUserById(userId);
         model.addAttribute("user", user);
 
-        logger.info("xxxxxxxx");
+        logger.info("xxxxxxxx {}", user);
         // return "redirect:/appointments";
         return "showUser";
     }

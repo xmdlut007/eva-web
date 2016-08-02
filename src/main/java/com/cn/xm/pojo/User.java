@@ -1,5 +1,7 @@
 package com.cn.xm.pojo;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class User {
     private Integer id;
 
@@ -39,5 +41,11 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return ToStringBuilder.reflectionToString(this);
     }
 }
