@@ -4,9 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add User From</title>
 </head>
 <body>
-   这里是登录界面
+	<form action="/account/register" method="post">
+		<fieldset>
+			<legend>创建用户</legend>
+			<p>
+				<label>姓名：</label> <input type="text" id="userName" name="userName"
+					tabindex="1">
+			</p>
+			<p>
+				<label>年龄：</label> <input type="text" id="age" name="age"
+					tabindex="2">
+			</p>
+			<p>
+				<label>密码：</label> <input type="text" id="password" name="password"
+					tabindex="3">
+			</p>
+			<p id="buttons">
+				<input id="reset" type="reset" tabindex="4" value="取消"> <input
+					id="submit" type="submit" tabindex="5" value="创建">
+			</p>
+		</fieldset>
+	</form>
 </body>
 </html>
