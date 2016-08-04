@@ -25,7 +25,8 @@ public class LoginController {
     }
     // 跳转登录页面
     @RequestMapping(value = "/register", method = {RequestMethod.POST})
-    public String register(@RequestParam("userName") String userName, @ModelAttribute("form") User user, HttpServletRequest request,
+    public String register(@RequestParam(value = "userName", required = true) String userName, @ModelAttribute("form") User user,
+            HttpServletRequest request,
             Model model) {
         logger.info("mmmmmm {}", userName);
         logger.info("mmmmmm {}", user);
