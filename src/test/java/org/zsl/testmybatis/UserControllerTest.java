@@ -1,8 +1,6 @@
 package org.zsl.testmybatis;
 
-import com.alibaba.fastjson.JSON;
 import com.cn.xm.controller.UserController;
-import com.cn.xm.pojo.User;
 import com.cn.xm.service.IUserService;
 
 import org.junit.Test;
@@ -34,18 +32,18 @@ public class UserControllerTest {
 
     @Test
     public void test1() {
-        System.out.println("tst");
-        // userService.deleteUserById(1);
-        User user = new User();
-        user.setUserName("qiuwenming");
-        user.setAge(20);
-        // user.setId(4);
-        user.setPassword("helll");
-        userService.insertUser(user);
-        User user1 = userService.getUserById(2);
-        // System.out.println(user.getUserName());
-        // logger.info("值："+user.getUserName());
-        logger.info("UserControllerTest {}" + JSON.toJSONString(user1));
+        // System.out.println("tst");
+        // // userService.deleteUserById(1);
+        // User user = new User();
+        // user.setUserName("qiuwenming");
+        // user.setAge(20);
+        // // user.setId(4);
+        // user.setPassword("helll");
+        // userService.insertUser(user);
+        // User user1 = userService.getUserById(2);
+        // // System.out.println(user.getUserName());
+        // // logger.info("值："+user.getUserName());
+        // logger.info("UserControllerTest {}" + JSON.toJSONString(user1));
 
     }
 }
