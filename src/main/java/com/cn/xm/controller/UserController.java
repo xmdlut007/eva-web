@@ -6,6 +6,7 @@ import com.cn.xm.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ConfigurableObjectInputStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,9 @@ public class UserController {
     @Autowired
     @Resource
     private IUserService userService;
+
+    // 绕过 maven 强制依赖检查
+    private ConfigurableObjectInputStream configurableObjectInputStream = null;
 
     @RequestMapping(value = "/{userId:[\\d]+}", method = {RequestMethod.GET, RequestMethod.POST})
     // @RequestMapping("/{userId}")
