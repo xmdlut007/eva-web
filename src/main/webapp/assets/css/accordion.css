@@ -1,0 +1,112 @@
+.ac-container{
+	margin: 10px auto;
+	text-align: left;
+}
+.ac-box > label{
+	margin: 0;
+	font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+	padding: 5px 20px;
+	position: relative;
+	z-index: 20;
+	display: block;
+	height: 30px;
+	cursor: pointer;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	line-height: 33px;
+	font-size: 19px;
+	background: #fff;
+	box-shadow:
+		0px 0px 0px 1px rgba(255,255,255,0.5),
+		0px 2px 2px rgba(0,0,0,0.1);
+}
+.ac-container label:hover{
+	opacity: 0.9;
+}
+.ac-container input:checked + label,
+.ac-container input:checked + label:hover{
+	box-shadow:
+		0px 0px 0px 1px rgba(255,255,255,0.5),
+		0px 2px 2px rgba(0,0,0,0.1);
+}
+.ac-container label:hover:after,
+.ac-container input:checked + label:hover:after{
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	right: 13px;
+	top: 7px;
+}
+.ac-box > input{
+	display: none;
+}
+.ac-container .rejectReason-list{
+	background: rgba(255, 255, 255, 0.5);
+	margin-top: -1px;
+	overflow: hidden;
+	height: 0px;
+	position: relative;
+	z-index: 10;
+}
+.ac-container .rejectReason-list {
+	color: #777;
+	line-height: 23px;
+	font-size: 14px;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+}
+.ac-container input:checked ~ .rejectReason-list{
+	border-width: 0 1px;
+	border-color:rgba(155,155,155,0.3);
+	border-style: solid;
+}
+.ac-container input:checked ~ .rejectReason-list{
+	height: auto;
+}
+.caret {
+	display: inline-block;
+	margin-top: 3px;
+	width: 0;
+	height: 0;
+	vertical-align: top;
+	font-size:0;
+	line-height:0;
+	border-width:7px;
+	border-color:#000000 transparent transparent transparent;
+	border-style:solid dashed dashed dashed;
+	content: "";
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+	-moz-transform: rotate(-90deg);
+	-webkit-transform:translate(3px, 0) rotate(-90deg);
+	transform: rotate(-90deg);
+}
+.ac-container .caret{
+	margin: 5px 0 0 0;
+	vertical-align: text-top;
+}
+.ac-container input:checked ~ label .caret{
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	margin: 8px 0 0 0;
+}
+.rejectReason-list-box{
+	border-bottom: 1px solid #EEE;
+	padding: 10px 20px;
+}
+.rejectReason-list-box label{
+	margin: 0;
+	cursor: pointer;
+}
+
+#myModal{ width: auto; position: absolute; margin: 0 0 0 -406px; }
+#myModal form{ margin: 0; }
+.ac-container .ac-box .ac-0{ background: #27b9ec; }
+.ac-container .ac-box .ac-1{ background: #a967cb; }
+.ac-container .ac-box .ac-2{ background: #98cb00; }
+.ac-container .ac-box .ac-3{ background: #ffbb34; }
+.ac-container .ac-box .ac-4{ background: #fe4445; }
+.ac-container .ac-box .ac-5{ background: #27b9ec; }
+.ac-container .checked{ background: rgba(255, 135, 2, 0.6); }
+#myModal .modal-body{ max-height: 5000px; }

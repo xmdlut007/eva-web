@@ -1,22 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add User From</title>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="header.jsp"%>
+<title>eva项目首页</title>
 </head>
-
 <body>
-   欢迎来到eva 社区 ~
-   ${hasSign}
-   <ul class="nav navbar-nav pull-xs-right">
-      <li class="nav-item signin">
-          <a class="nav-link" href="/auth/signin">登录</a>
-      </li>
-      <li class="nav-item signin">
-          <a class="nav-link" href="/auth/signup">注册</a>
-      </li>
-    </ul>
+    <div class="container-fluid">
+        <div class="row-fluid">
+           <%@ include file="audit_nav.jsp"%>
+        </div>
+    </div>
+    <%@ include file="footer.jsp"%>
 </body>
-</html>

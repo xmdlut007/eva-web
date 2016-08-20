@@ -1,0 +1,40 @@
+
+.l-w475{ width: 475px; }
+.l-w268{ width: 268px; }
+.l-w682{ width: 682px; }
+.l-w428{ width: 428px; }
+
+.hdicon-h{ padding-top: 27px; min-height: 62px;}
+.hdicon-h .controls { margin-left: 411px; }
+.hdicon-h .control-group { margin-bottom: 0px; }
+.hdicon-h .control-label { width: 410px; }
+
+.hdicon-upload-info{ padding: 28px 50px 0; }
+.hdicon-upload-info h4{ color: #7A7A7A; font: normal 16px/1.8 微软雅黑; }
+.hdicon-upload-info p{ color: #999; }
+.hdicon-upload{color: #999; text-align: center;}
+.hdicon-upload .failed{ margin-top: 12px; }
+
+#result90 .thumb{ margin: 64px auto; width: 90px; height: 90px; 
+ background: url(http://resource.xiaomi.net/miuimarket/dev/v2/hd-90.png) center center no-repeat;}
+#result90 .thumb img{ width: 90px; height: 90px; }
+#result136 .thumb{ margin: 22px auto; width: 136px; height: 136px; 
+ background: url(http://resource.xiaomi.net/miuimarket/dev/v2/hd-136.png) center center no-repeat;}
+#result136 .thumb img{ width: 136px; height: 136px; }
+.hdicon-upload-warn{ clear: both; margin-bottom: 42px; }
+#result90 .filedel{ top: 13px; right: 73px;}
+#result136 .filedel{top: 15px; right: 51px;}
+#result192 .thumb{width: 192px; height: 192px; 
+background: url(http://i1.ml.mi-img.com/img/miui/appstore/dev/v2/hd-192.png) center center no-repeat;}
+#result192 .thumb img{ width: 192px; height: 192px; }
+#result192 .filedel{top: 13px; right: 25px;}
+.hdicon-upload-wrap{ position: relative; }
+.hdicon-upload-wrap .thumb{ position: relative; overflow: hidden; padding: 20px 28px;}
+
+.hd-upload-success{color: #666;text-align: center;padding: 38px 0;}
+.hd-upload-success-info{margin-bottom: 32px;}
+.hd-upload-success .row-fluid{ padding-left: 242px; text-align: left;}
+
+/*data-center*/
+.data-center .content{ padding: 0 28px 68px 28px; }
+.dc-hd{ margin-bottom: 10px; }

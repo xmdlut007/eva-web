@@ -1,0 +1,33 @@
+.screentshot{padding: 0 62px 42px; }
+.screentshot-wrap, table.screentshot-wrap{
+width: 828px;
+padding: 30px 0 6px 0;
+}
+.screentshot-desc{ color: #999999; }
+.sortable-wrap{ overflow:hidden;zoom:1}
+.screenshot-sortable { position: relative;list-style-type: none; margin: 0; padding: 10px; overflow:hidden; float:left}
+.screenshot-sortable li { float: left; width:100px; height:165px; padding:2px; text-align:center; 
+font-size:12px; border:5px solid white; margin-right:18px; margin-bottom:4px;border-radius:5px; 
+position:relative; box-shadow: 0 1px 17px 0 rgba(0, 0, 0, .3); z-index: 999; }
+.ui-sortable .file { display: none; font-size: 80px; }
+.filebtn{position: absolute;bottom:2px; left:4px;}
+.filedel{position: absolute;top:-13px; right:-13px; text-indent: -9999px; display: inline-block; width:25px; height: 24px; background:url(http://resource.xiaomi.net/miuimarket/dev/v1/close.png) no-repeat;}
+.filename{position: absolute;top:80px; left:0; width:100%; text-align:center}
+.filethumb{position: absolute; left:2px;top:2px;height:166px;}
+.fileadd{ position: absolute; z-index: 1; right:21px; width:100px; height:164px; padding:2px; cursor:pointer; border:5px solid #fff; margin-right:4px; margin-bottom:4px;border-radius:5px; background:#eeeeee url(http://resource.xiaomi.net/miuimarket/dev/v1/add.png) no-repeat center center;}
+.current{ opacity: 0; filter: alpha(opacity=0);}
+.current .filedel{filter: alpha(opacity=0);}
+.current .file{ width:106px; height:173px; cursor: pointer; display: block; }
+
+.hdicon-upload-wrap .thumb img{ padding: 0; background-color: #FFF;}
+
+/*pad*/
+.screentshot-wrap-pad, table.screentshot-wrap-pad{
+width: 828px;
+padding: 30px 0 12px 0;
+}
+.screentshot-wrap-pad li,
+.screentshot-wrap-pad .fileadd,
+.screentshot-wrap-pad .current .file,
+.screentshot-wrap-pad .filethumb{ width: 125px;
+height: 95px;}
