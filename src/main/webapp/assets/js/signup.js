@@ -15,7 +15,6 @@ function check_form() {
 	if (v.length < 2) {
 		return "用户名不能小于2个字符";
 	}
-
 	v = $signup.find("input[name=password]").val()
 	if (v.length < 8) {
 		return "密码不能小于8个字符";
