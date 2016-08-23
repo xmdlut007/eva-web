@@ -2,7 +2,11 @@ package com.cn.xm.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cn.xm.common.constants.ReturnCode;
+import com.cn.xm.common.utils.MailSenderInfo;
+import com.cn.xm.common.utils.RandomUtil;
+import com.cn.xm.pojo.AuthIdentifier;
 import com.cn.xm.pojo.User;
+import com.cn.xm.service.impl.AuthIdentifierServiceImpl;
 import com.cn.xm.service.impl.UserServiceImpl;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,10 +30,11 @@ public class LoginController {
 
     @Autowired
     private UserServiceImpl userServiceImpl;
+    @Autowired
+    private AuthIdentifierServiceImpl authIdentifierServiceImpl;
     // 跳转到登录页面
     @RequestMapping(value = "/signin", method = {RequestMethod.GET})
     public String loginIn(HttpServletRequest request, Model model) {
-        logger.info("mmmmmm");
         return "signin";
     }
     // 跳转注册页面
@@ -83,5 +88,23 @@ public class LoginController {
             return new ReturnCode(-1, "failure");
         }
         
+    }
+    @RequestMapping(value = "/signup/identifier", method = {RequestMethod.POST})
+    @ResponseBody
+    public Object getSignUpIdentifier(@RequestParam(value = "email", required = true) String email) {
+        if (!MailSenderInfo.isEmail(email)) {
+            return new ReturnCode(-1, "邮箱地址格式不正确");
+        }
+        String uuid = RandomUtil.generateUUID();
+        String code = RandomUtil.generateRandomDigStr(6);
+        JSONObject res = new JSONObject();
+        res.put("identifier_id", uuid);
+        res.put("identifier_code", code);
+        AuthIdentifier authIdentifier = new AuthIdentifier();
+        authIdentifier.setType("email");
+        authIdentifier.setUuid(uuid);
+        authIdentifier.setCode(code);
+        authIdentifierServiceImpl.insertAuthIdentifier(authIdentifier);
+        return res;
     }
 }
