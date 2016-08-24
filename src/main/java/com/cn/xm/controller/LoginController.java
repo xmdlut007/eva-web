@@ -39,9 +39,7 @@ public class LoginController {
     }
     // 跳转注册页面
     @RequestMapping(value = "/signup", method = {RequestMethod.GET})
-    public String register(@ModelAttribute("form") User user,
-            HttpServletRequest request,
-            Model model) {
+    public String register(@ModelAttribute("form") User user, HttpServletRequest request, Model model) {
         logger.info("mmmmmm {}", user);
         return "signup";
     }
@@ -50,8 +48,7 @@ public class LoginController {
     @RequestMapping(value = "/signup", method = {RequestMethod.POST})
     @ResponseBody
     public ReturnCode signin(@RequestParam(value = "userName", required = true) String userName,
-            @RequestParam(value = "password", required = true) String password,
-            HttpServletRequest request, Model model) {
+            @RequestParam(value = "password", required = true) String password, HttpServletRequest request, Model model) {
         // String userName = request.getParameter("userName");
         // String password = request.getParameter("password");
         User user = new User();
@@ -75,8 +72,7 @@ public class LoginController {
     @RequestMapping(value = "/signin", method = {RequestMethod.POST})
     @ResponseBody
     public ReturnCode login(@RequestParam(value = "userName", required = true) String userName,
-            @RequestParam(value = "password", required = true) String password,
-            @ModelAttribute("form") User user,
+            @RequestParam(value = "password", required = true) String password, @ModelAttribute("form") User user,
             HttpServletRequest request, Model model) {
         JSONObject jsonObject = new JSONObject();
         boolean login = userServiceImpl.loginValidate(userName, password);
@@ -87,7 +83,7 @@ public class LoginController {
             logger.info("login failuer  {}", userName);
             return new ReturnCode(-1, "failure");
         }
-        
+
     }
     @RequestMapping(value = "/signup/identifier", method = {RequestMethod.POST})
     @ResponseBody
@@ -104,6 +100,7 @@ public class LoginController {
         authIdentifier.setType("email");
         authIdentifier.setUuid(uuid);
         authIdentifier.setCode(code);
+        logger.info(authIdentifier.toString());
         authIdentifierServiceImpl.insertAuthIdentifier(authIdentifier);
         return res;
     }
