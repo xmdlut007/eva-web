@@ -2,10 +2,10 @@ package com.cn.xm.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cn.xm.common.constants.ReturnCode;
+import com.cn.xm.common.model.AuthIdentifier;
+import com.cn.xm.common.model.User;
 import com.cn.xm.common.utils.MailSenderInfo;
 import com.cn.xm.common.utils.RandomUtil;
-import com.cn.xm.pojo.AuthIdentifier;
-import com.cn.xm.pojo.User;
 import com.cn.xm.service.impl.AuthIdentifierServiceImpl;
 import com.cn.xm.service.impl.UserServiceImpl;
 

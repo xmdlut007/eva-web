@@ -1,6 +1,6 @@
 package com.cn.xm.dao;
 
-import com.cn.xm.pojo.AuthUser;
+import com.cn.xm.common.model.AuthUser;
 
 public interface AuthUserMapper {
 

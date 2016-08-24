@@ -1,4 +1,4 @@
-package com.cn.xm.pojo;
+package com.cn.xm.common.model;
 
 public class AuthUser {
 

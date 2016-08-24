@@ -1,6 +1,6 @@
 package com.cn.xm.service;
 
-import com.cn.xm.pojo.User;
+import com.cn.xm.common.model.User;
 
 public interface IUserService {
     public User getUserById(int userId);

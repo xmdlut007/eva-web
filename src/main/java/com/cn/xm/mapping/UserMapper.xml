@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cn.xm.dao.UserMapper">
-    <resultMap id="BaseResultMap" type="com.cn.xm.pojo.User">
+    <resultMap id="BaseResultMap" type="com.cn.xm.common.model.User">
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
@@ -36,7 +36,7 @@
         user_t
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.cn.xm.pojo.User">
+    <insert id="insert" parameterType="com.cn.xm.common.model.User">
         insert into user_t (id,
         user_name, password,
         age)
@@ -45,7 +45,7 @@
         #{password,jdbcType=VARCHAR},
         #{age,jdbcType=INTEGER})
     </insert>
-    <insert id="insertSelective" parameterType="com.cn.xm.pojo.User">
+    <insert id="insertSelective" parameterType="com.cn.xm.common.model.User">
         insert into user_t
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -76,7 +76,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.cn.xm.pojo.User">
+    <update id="updateByPrimaryKeySelective" parameterType="com.cn.xm.common.model.User">
         update user_t
         <set>
             <if test="userName != null">
@@ -91,7 +91,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.cn.xm.pojo.User">
+    <update id="updateByPrimaryKey" parameterType="com.cn.xm.common.model.User">
         update user_t
         set user_name = #{userName,jdbcType=VARCHAR},
         password =

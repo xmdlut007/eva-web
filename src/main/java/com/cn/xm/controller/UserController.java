@@ -1,6 +1,6 @@
 package com.cn.xm.controller;
 
-import com.cn.xm.pojo.User;
+import com.cn.xm.common.model.User;
 import com.cn.xm.service.IUserService;
 
 import org.slf4j.Logger;

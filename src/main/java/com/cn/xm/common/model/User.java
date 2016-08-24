@@ -1,4 +1,4 @@
-package com.cn.xm.pojo;
+package com.cn.xm.common.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

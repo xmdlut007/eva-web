@@ -1,6 +1,6 @@
 package com.cn.xm.dao;
 
-import com.cn.xm.pojo.User;
+import com.cn.xm.common.model.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);

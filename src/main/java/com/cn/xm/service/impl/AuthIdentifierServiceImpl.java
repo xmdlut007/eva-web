@@ -1,7 +1,7 @@
 package com.cn.xm.service.impl;
 
+import com.cn.xm.common.model.AuthIdentifier;
 import com.cn.xm.dao.AuthIdentifierMapper;
-import com.cn.xm.pojo.AuthIdentifier;
 import com.cn.xm.service.AuthIdentifierService;
 
 import org.springframework.stereotype.Service;

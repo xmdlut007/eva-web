@@ -1,6 +1,6 @@
 package com.cn.xm.service;
 
-import com.cn.xm.pojo.AuthIdentifier;
+import com.cn.xm.common.model.AuthIdentifier;
 
 /**
  * @author qiuwenming@xiaomi.com

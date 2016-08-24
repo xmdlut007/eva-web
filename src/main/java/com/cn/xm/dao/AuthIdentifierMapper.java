@@ -1,6 +1,6 @@
 package com.cn.xm.dao;
 
-import com.cn.xm.pojo.AuthIdentifier;
+import com.cn.xm.common.model.AuthIdentifier;
 
 public interface AuthIdentifierMapper {
 

@@ -1,7 +1,7 @@
 package com.cn.xm.common.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.cn.xm.pojo.User;
+import com.cn.xm.common.model.User;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
