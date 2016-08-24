@@ -96,7 +96,7 @@ public class LoginController {
             return new ReturnCode(-1, "邮箱地址格式不正确");
         }
         String uuid = RandomUtil.generateUUID();
-        String code = RandomUtil.generateRandomDigStr(6);
+        String code = RandomUtil.generateRandomDigitalStr(6);
         JSONObject res = new JSONObject();
         res.put("identifier_id", uuid);
         res.put("identifier_code", code);
