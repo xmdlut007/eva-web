@@ -20,7 +20,7 @@ public class GlobalConfigureServiceContextListener implements ServletContextList
     private final static String GLOBAL_CONFIG_PATH = "global_config.properties";
 
     private static String MAIL_TEMPLATE = "";
-    private static long expireTime = 0l;
+    private static long expireTime = 0l; // 验证码过期时间
     public static void initGlobalConfig(ServletContextEvent sce) {
         Properties properties = System.getProperties();
         Resource res = new ClassPathResource(GLOBAL_CONFIG_PATH);
@@ -36,9 +36,11 @@ public class GlobalConfigureServiceContextListener implements ServletContextList
             logger.error("SendCloudMailUtil{}", e);
         }
     }
+    public static long getIdentifierExpireTime(){
+        return expireTime;
+    }
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        // TODO Auto-generated method stub
         initGlobalConfig(sce);
 
     }

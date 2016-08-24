@@ -6,6 +6,7 @@ import com.cn.xm.common.model.AuthIdentifier;
 import com.cn.xm.common.model.User;
 import com.cn.xm.common.utils.MailSenderInfo;
 import com.cn.xm.common.utils.RandomUtil;
+import com.cn.xm.filters.GlobalConfigureServiceContextListener;
 import com.cn.xm.service.impl.AuthIdentifierServiceImpl;
 import com.cn.xm.service.impl.UserServiceImpl;
 
@@ -101,6 +102,7 @@ public class LoginController {
         authIdentifier.setUuid(uuid);
         authIdentifier.setCode(code);
         logger.info(authIdentifier.toString());
+        logger.info("expire time {}", GlobalConfigureServiceContextListener.getIdentifierExpireTime());
         authIdentifierServiceImpl.insertAuthIdentifier(authIdentifier);
         return res;
     }
