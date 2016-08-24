@@ -9,4 +9,9 @@ import com.cn.xm.common.model.AuthIdentifier;
 public interface AuthIdentifierService {
 
     public int insertAuthIdentifier(AuthIdentifier authIdentifier);
+
+    public AuthIdentifier selectSelectiveAuthIdentifier(AuthIdentifier authIdentifier);
+
+    public int delectSelectiveAuthIdentifier(AuthIdentifier authIdentifier);
+
 }

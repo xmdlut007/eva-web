@@ -3,11 +3,14 @@ package com.cn.xm.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.xm.common.constants.ReturnCode;
 import com.cn.xm.common.model.AuthIdentifier;
+import com.cn.xm.common.model.AuthUser;
 import com.cn.xm.common.model.User;
 import com.cn.xm.common.utils.MailSenderInfo;
+import com.cn.xm.common.utils.PasswordUtil;
 import com.cn.xm.common.utils.RandomUtil;
 import com.cn.xm.filters.GlobalConfigureServiceContextListener;
 import com.cn.xm.service.impl.AuthIdentifierServiceImpl;
+import com.cn.xm.service.impl.AuthUserServiceImpl;
 import com.cn.xm.service.impl.UserServiceImpl;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,6 +36,8 @@ public class LoginController {
     private UserServiceImpl userServiceImpl;
     @Autowired
     private AuthIdentifierServiceImpl authIdentifierServiceImpl;
+    @Autowired
+    private AuthUserServiceImpl authUserServiceImpl;
     // 跳转到登录页面
     @RequestMapping(value = "/signin", method = {RequestMethod.GET})
     public String loginIn(HttpServletRequest request, Model model) {
@@ -48,40 +53,53 @@ public class LoginController {
     // 注册账号
     @RequestMapping(value = "/signup", method = {RequestMethod.POST})
     @ResponseBody
-    public ReturnCode signin(@RequestParam(value = "userName", required = true) String userName,
-            @RequestParam(value = "password", required = true) String password, HttpServletRequest request, Model model) {
-        // String userName = request.getParameter("userName");
-        // String password = request.getParameter("password");
-        User user = new User();
-        user.setUserName(userName);
-        user.setPassword(password);
-        if (user != null && StringUtils.isNotBlank(user.getUserName())) {
-            User dbUser = userServiceImpl.getUserByUsername(user.getUserName());
-            logger.info("signin {}", user);
-            if (dbUser != null) {
-                model.addAttribute("hasSign", "已经注册");
-                logger.info("mmmmmm {} {}", "已经注册", dbUser);
-                return new ReturnCode(-1, "该账号已经注册使用");
+    public ReturnCode signin(@RequestParam(value = "username", required = true) String username,
+            @RequestParam(value = "password", required = true) String password,
+            @RequestParam(value = "email", required = true) String email, @RequestParam(value = "code", required = true) String code,
+            HttpServletRequest request, Model model) {
+
+        AuthUser authUser = new AuthUser();
+        authUser.setUsername(username);
+        authUser.setPassword(PasswordUtil.encodeLoginPassword(password));
+        authUser.setEmail(email);
+        if (authUser != null && StringUtils.isNotBlank(authUser.getUsername())) {
+            AuthUser authUserExist = authUserServiceImpl.getUserByUsername(username);
+            if (authUserExist != null && StringUtils.isNotBlank(authUserExist.getUsername())) {
+                // model.addAttribute("hasSign", "已经注册");
+                return new ReturnCode(-1, "该账号已被使用");
                 // return "redirect:/home";
             }
         }
-        userServiceImpl.insertUser(user);
+        AuthIdentifier authIdentifier = new AuthIdentifier();
+        authIdentifier.setData(email);
+        authIdentifier.setCode(code);
+
+        AuthIdentifier authIdentifierExist = authIdentifierServiceImpl.selectSelectiveAuthIdentifier(authIdentifier);
+        if (authIdentifierExist == null) {
+            return new ReturnCode(-1, "输入正确的验证码");
+        }
+        if (authIdentifierExist.getExpired() < System.currentTimeMillis()) {
+            return new ReturnCode(-1, "验证码已过期");
+        }
+
+        authUserServiceImpl.insertAuthUser(authUser);
+        authIdentifierServiceImpl.delectSelectiveAuthIdentifier(authIdentifierExist);
         // return "redirect:/home";
         return new ReturnCode(0, "账号注册成功");
     }
     // 登录账号
     @RequestMapping(value = "/signin", method = {RequestMethod.POST})
     @ResponseBody
-    public ReturnCode login(@RequestParam(value = "userName", required = true) String userName,
+    public ReturnCode login(@RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password, @ModelAttribute("form") User user,
             HttpServletRequest request, Model model) {
         JSONObject jsonObject = new JSONObject();
-        boolean login = userServiceImpl.loginValidate(userName, password);
+        boolean login = authUserServiceImpl.loginValidate(username, password);
         if (login) {
-            logger.info("login sucess  {}", userName);
+            logger.info("login sucess  {}", username);
             return new ReturnCode(0, "sucess");
         } else {
-            logger.info("login failuer  {}", userName);
+            logger.info("login failuer  {}", username);
             return new ReturnCode(-1, "failure");
         }
 
@@ -92,17 +110,23 @@ public class LoginController {
         if (!MailSenderInfo.isEmail(email)) {
             return new ReturnCode(-1, "邮箱地址格式不正确");
         }
+        AuthIdentifier tmpAuthIdentifier = new AuthIdentifier();
+        tmpAuthIdentifier.setData(email);
+        if (authIdentifierServiceImpl.selectSelectiveAuthIdentifier(tmpAuthIdentifier) != null) {
+            return new ReturnCode(-1, "邮箱地址已被使用");
+        }
         String uuid = RandomUtil.generateUUID();
         String code = RandomUtil.generateRandomDigitalStr(6);
         JSONObject res = new JSONObject();
         res.put("identifier_id", uuid);
         res.put("identifier_code", code);
+        res.put("email", email);
         AuthIdentifier authIdentifier = new AuthIdentifier();
         authIdentifier.setType("email");
         authIdentifier.setUuid(uuid);
         authIdentifier.setCode(code);
-        logger.info(authIdentifier.toString());
-        logger.info("expire time {}", GlobalConfigureServiceContextListener.getIdentifierExpireTime());
+        authIdentifier.setData(email);
+        authIdentifier.setExpired(System.currentTimeMillis() + GlobalConfigureServiceContextListener.getIdentifierExpireTime());
         authIdentifierServiceImpl.insertAuthIdentifier(authIdentifier);
         return res;
     }

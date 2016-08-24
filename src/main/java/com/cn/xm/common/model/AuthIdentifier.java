@@ -140,4 +140,7 @@ public class AuthIdentifier {
     public void setExpired(Long expired) {
         this.expired = expired;
     }
+    // public boolean isExpired() {
+    // return System.currentTimeMillis() > expired;
+    // }
 }

@@ -18,9 +18,16 @@ public class AuthIdentifierServiceImpl implements AuthIdentifierService {
     private AuthIdentifierMapper authIdentifierMapper;
     @Override
     public int insertAuthIdentifier(AuthIdentifier authIdentifier) {
-        // TODO Auto-generated method stub
         authIdentifierMapper.insertSelective(authIdentifier);
         return 0;
+    }
+    @Override
+    public AuthIdentifier selectSelectiveAuthIdentifier(AuthIdentifier authIdentifier) {
+        return authIdentifierMapper.selectBySelective(authIdentifier);
+    }
+    @Override
+    public int delectSelectiveAuthIdentifier(AuthIdentifier authIdentifier) {
+        return authIdentifierMapper.deleteBySelective(authIdentifier);
     }
 
 }
