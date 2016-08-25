@@ -26,12 +26,18 @@
         is_superuser, is_locked,
         create_time, update_time, role
     </sql>
-    <select id="selectByUsername" resultMap="BaseResultMap"
-        parameterType="java.lang.String">
+    <select id="selectByUsernameEmail" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from auth_user
-        where username = #{username,jdbcType=VARCHAR}
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="username != null">
+                and username = #{username}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+        </trim>
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long"
         resultMap="BaseResultMap">
@@ -52,16 +58,22 @@
         <!-- WARNING - @mbggenerated This element is automatically generated 
             by MyBatis Generator, do not modify. -->
         insert into auth_user (id, uid, username,
-        password, email, nickname,
+        password, email,
+        nickname,
         gender, is_active, is_superuser,
-        is_locked, create_time, update_time,
+        is_locked, create_time,
+        update_time,
         role)
-        values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT},
+        values (#{id,jdbcType=BIGINT},
+        #{uid,jdbcType=BIGINT},
         #{username,jdbcType=VARCHAR},
-        #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
-        #{gender,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT},
+        #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+        #{nickname,jdbcType=VARCHAR},
+        #{gender,jdbcType=VARCHAR},
+        #{isActive,jdbcType=TINYINT},
         #{isSuperuser,jdbcType=TINYINT},
-        #{isLocked,jdbcType=TINYINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT},
+        #{isLocked,jdbcType=TINYINT}, #{createTime,jdbcType=BIGINT},
+        #{updateTime,jdbcType=BIGINT},
         #{role,jdbcType=BIGINT})
     </insert>
     <insert id="insertSelective" parameterType="com.cn.xm.common.model.AuthUser">
@@ -195,21 +207,73 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <update id="updateByEmailSelective" parameterType="com.cn.xm.common.model.AuthUser">
+        <!-- WARNING - @mbggenerated This element is automatically generated 
+            by MyBatis Generator, do not modify. -->
+        update auth_user
+        <set>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=TINYINT},
+            </if>
+            <if test="isSuperuser != null">
+                is_superuser = #{isSuperuser,jdbcType=TINYINT},
+            </if>
+            <if test="isLocked != null">
+                is_locked = #{isLocked,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="role != null">
+                role = #{role,jdbcType=BIGINT},
+            </if>
+        </set>
+        where email = #{email,jdbcType=VARCHAR}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.cn.xm.common.model.AuthUser">
         <!-- WARNING - @mbggenerated This element is automatically generated 
             by MyBatis Generator, do not modify. -->
         update auth_user
         set uid = #{uid,jdbcType=BIGINT},
-        username = #{username,jdbcType=VARCHAR},
-        password = #{password,jdbcType=VARCHAR},
+        username =
+        #{username,jdbcType=VARCHAR},
+        password =
+        #{password,jdbcType=VARCHAR},
         email = #{email,jdbcType=VARCHAR},
         nickname = #{nickname,jdbcType=VARCHAR},
-        gender = #{gender,jdbcType=VARCHAR},
-        is_active = #{isActive,jdbcType=TINYINT},
-        is_superuser = #{isSuperuser,jdbcType=TINYINT},
-        is_locked = #{isLocked,jdbcType=TINYINT},
-        create_time = #{createTime,jdbcType=BIGINT},
-        update_time = #{updateTime,jdbcType=BIGINT},
+        gender =
+        #{gender,jdbcType=VARCHAR},
+        is_active =
+        #{isActive,jdbcType=TINYINT},
+        is_superuser =
+        #{isSuperuser,jdbcType=TINYINT},
+        is_locked =
+        #{isLocked,jdbcType=TINYINT},
+        create_time =
+        #{createTime,jdbcType=BIGINT},
+        update_time =
+        #{updateTime,jdbcType=BIGINT},
         role = #{role,jdbcType=BIGINT}
         where id = #{id,jdbcType=BIGINT}
     </update>

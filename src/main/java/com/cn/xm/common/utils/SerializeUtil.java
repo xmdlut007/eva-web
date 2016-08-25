@@ -1,13 +1,15 @@
 package com.cn.xm.common.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.cn.xm.common.model.User;
+import com.cn.xm.common.model.AuthUser;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import javax.xml.registry.infomodel.User;
 
 public class SerializeUtil {
     // 序列化对象
@@ -43,9 +45,8 @@ public class SerializeUtil {
 
     }
     public static void main(String args[]) {
-        User user = new User();
-        user.setUserName("qiuwenming");
-        user.setAge(10);
+        AuthUser user = new AuthUser();
+        user.setUsername("qiuwenming");
         byte[] bytes = SerializeUtil.serialize(user);
 
         User user2 = (User) SerializeUtil.deSerialize(bytes);

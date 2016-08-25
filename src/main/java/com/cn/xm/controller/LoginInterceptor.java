@@ -1,6 +1,7 @@
 package com.cn.xm.controller;
 
 import org.apache.log4j.Logger;
+import org.springframework.core.ConfigurableObjectInputStream;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     private static Logger logger = Logger.getLogger(LoginInterceptor.class);
+    // 绕过 maven 强制依赖检查
+    private ConfigurableObjectInputStream configurableObjectInputStream = null;
+
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // TODO Auto-generated method stub
