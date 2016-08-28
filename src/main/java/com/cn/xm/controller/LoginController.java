@@ -1,9 +1,11 @@
 package com.cn.xm.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cn.xm.common.constants.EVAConstants;
 import com.cn.xm.common.constants.ReturnCode;
 import com.cn.xm.common.model.AuthIdentifier;
 import com.cn.xm.common.model.AuthUser;
+import com.cn.xm.common.utils.CookieUtil;
 import com.cn.xm.common.utils.MailSenderInfo;
 import com.cn.xm.common.utils.PasswordUtil;
 import com.cn.xm.common.utils.RandomUtil;
@@ -26,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/auth")
@@ -98,11 +101,14 @@ public class LoginController {
     @RequestMapping(value = "/signin", method = {RequestMethod.POST})
     @ResponseBody
     public ReturnCode login(@RequestParam(value = "username", required = true) String username,
-            @RequestParam(value = "password", required = true) String password, HttpServletRequest request, Model model) {
+            @RequestParam(value = "password", required = true) String password, HttpServletRequest request,
+            HttpServletResponse httpServletResponse, Model model) {
         // 同时支持用户名和邮箱登录
         boolean login = authUserServiceImpl.loginValidate(username, password);
         if (login) {
             logger.info("login sucess  {}", username);
+            CookieUtil.addLoginInfoToCookie(httpServletResponse, username, EVAConstants.user_token);
+            httpServletResponse.setStatus(302);
             return new ReturnCode(0, "sucess");
         } else {
             logger.info("login failuer  {}", username);

@@ -11,10 +11,10 @@
 <body>
 <div class="container">
 
-      <form class="form-signin" action="/auth/login" method="post">
+      <form class="form-signin" action="/auth/signin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="userName" class="sr-only">用户名</label>
-        <input type="text" id="userName" name="userName" class="form-control" >
+        <input type="text" id="userName" name="username" class="form-control" >
         <label for="password" class="sr-only">密码</label>
         <input type="password" id="password" name="password" class="form-control">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author qiuwenming@xiaomi.com
@@ -17,10 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController {
     private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
+    @LoginRequired
     @RequestMapping("")
-    public String loginIndex(HttpServletRequest request, Model model) {
-        logger.info("mmmmmm");
-        model.addAttribute("hasSign", request.getParameter("hasSign"));
+    public String loginIndex(HttpServletRequest request, HttpServletResponse httpServletResponse, Model model) {
+        // CookieUtil.addLoginInfoToCookie(httpServletResponse, "qiuwenming",
+        // EVAConstants.user_token);
         return "index";
     }
 
