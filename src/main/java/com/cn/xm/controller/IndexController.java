@@ -23,6 +23,7 @@ public class IndexController {
     public String loginIndex(HttpServletRequest request, HttpServletResponse httpServletResponse, Model model) {
         // CookieUtil.addLoginInfoToCookie(httpServletResponse, "qiuwenming",
         // EVAConstants.user_token);
+        logger.info("xxxxxx");
         return "index";
     }
 

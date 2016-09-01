@@ -21,7 +21,10 @@
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-
+        <log_file_path>/Users/qiuwenming/log/eva.log</log_file_path>
+        <log_error_file_path>/Users/qiuwenming/log/eva-error.log</log_error_file_path>
+        <log4j_level>debug</log4j_level>
+        <zookeeper_host>onebox</zookeeper_host>
     </properties>
 
     <dependencies>
@@ -146,11 +149,6 @@
         </dependency>
 
         <!-- 日志文件管理包 -->
-        <!-- log start -->
-       <!--  <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-        </dependency> -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -237,8 +235,48 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>aws_sgp</id>
+            <activation>
+                <property>
+                    <name>aws_sgp</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <log4j_level>info</log4j_level>
+                <log_file_path>/home/work/log/appstore-api/appstore-api-&lt;%=
+                    scope["config::mod_port"] %&gt;.log</log_file_path>
+                <log_error_file_path>/home/work/log/appstore-api/appstore-api-error-&lt;%=
+                    scope["config::mod_port"]
+                    %&gt;.log</log_error_file_path>
+                <zookeeper_host>aws_sgp</zookeeper_host>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>${project.basedir}/src/main/webapp/WEB-INF</directory>
+                            <includes>
+                                <include>**/*.txt</include>
+                                <include>**/*.xml</include>
+                                <include>**/*.properties</include>
+                            </includes>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
             <!-- 编译使用1.6 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -274,11 +312,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>${project.basedir}/src/main/resources/*.xml</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
+                <directory>${project.basedir}/src/main/resources</directory>
                 <includes>
                     <include>*.xml</include>
                     <include>*.properties</include>

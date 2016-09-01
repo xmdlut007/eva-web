@@ -2,18 +2,20 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="/usr/local/logs/eva.log" />
+        <param name="File" value="${log_file_path}" />
         <param name="DatePattern" value=".yyyyMMddHH" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%-5p %d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %l [%m]%n" />
+            <param name="ConversionPattern"
+                value="[%-5p %d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %l [%m]%n" />
         </layout>
     </appender>
 
     <appender name="error_file" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="/usr/local/logs/eva.log.err" />
+        <param name="File" value="${log_error_file_path}" />
         <param name="DatePattern" value=".yyyyMMdd" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%-5p %d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %l [%m]%n" />
+            <param name="ConversionPattern"
+                value="[%-5p %d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %l [%m]%n" />
         </layout>
         <filter class="org.apache.log4j.varia.LevelRangeFilter">
             <param name="LevelMin" value="WARN" />
@@ -22,9 +24,17 @@
     </appender>
 
     <logger name="com.cn" additivity="false">
-        <level value="INFO" />
+        <level value="${log4j_level}" />
         <appender-ref ref="file" />
         <appender-ref ref="error_file" />
     </logger>
+    <!-- 下面给出的样例子 -->
+    <logger name="net.paoding.rose" additivity="false">
+        <level value="${log4j_level}" />
+        <appender-ref ref="file" />
+    </logger>
 
+    <logger name="net.sf.json" additivity="false">
+        <level value="off" />
+    </logger>
 </log4j:configuration>
